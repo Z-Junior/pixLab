@@ -25,7 +25,7 @@ public class Picture extends SimplePicture
     /* not needed but use it to show students the implicit call to super()
      * child constructors always call a parent constructor 
      */
-    super();  
+    super();
   }
   
   /**
@@ -96,6 +96,11 @@ public class Picture extends SimplePicture
         pixelObj.setBlue(0);
       }
     }
+  }
+  
+  public void keepOnlyBlue()
+  {
+          
   }
   
   /** Method that mirrors the picture around a 

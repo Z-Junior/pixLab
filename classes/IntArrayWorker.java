@@ -98,5 +98,51 @@ public class IntArrayWorker
       }
     }
   }
- 
+  
+  /**
+   * Get count of specific integer
+   * @param iNum Integer to scan for
+   * @return Number of times found
+   */
+  public int getCount(int iNum)
+  {
+      int iCount = 0;
+      
+      for (int i = 0; i < matrix.length; i++)
+        for (int j  = 0; j < matrix[i].length; j++)
+            if (matrix[i][j] == iNum)
+                iCount++;
+                
+      return iCount;
+  }
+  
+  /**
+   * Get largest number in matrix
+   * @return Largest number in matrix
+   */
+  public int getLargest()
+  {
+      int iLargest = matrix[0][0];
+      
+      for (int i = 0; i < matrix.length; i++)
+        for (int j  = 0; j < matrix[i].length; j++)
+            if (matrix[i][j] > iLargest)
+                iLargest = matrix[i][j];
+      
+      return iLargest;
+  }
+  
+  /**
+   * Get total in a column (Dimension 1)
+   * @param iCol Dimension 1 index
+   */
+  public int getColTotal(int iCol)
+  {
+      int iTotal = 0;
+      
+      for (int i = 0; i < matrix.length; i++)
+                iTotal += matrix[i][iCol];
+                
+      return iTotal;
+  }
 }
