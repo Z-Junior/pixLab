@@ -97,13 +97,88 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
-  public void keepOnlyBlue()
-  {
-          
-  }
-  
-  /** Method that mirrors the picture around a 
+
+    /**
+     * Method to set Green & Red values to 0, keeping only 0
+     */
+    public void keepOnlyBlue()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        for (Pixel[] pRow : pixels)
+        {
+            for (Pixel pColumn : pRow)
+            {
+                pColumn.setRed(0);
+                pColumn.setGreen(0);
+            }
+        }
+    }
+
+    /**
+     * Negate all the pixels
+     */
+    public void negate()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        for (Pixel[] pRow : pixels)
+        {
+            for (Pixel pColumn : pRow)
+            {
+                pColumn.setRed(255 - pColumn.getRed());
+                pColumn.setGreen(255 - pColumn.getGreen());
+                pColumn.setBlue(255 - pColumn.getBlue());
+            }
+        }
+    }
+
+    /**
+     * Grayscale all the pixels
+     */
+    public void grayscale()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        for (Pixel[] pRow : pixels)
+        {
+            for (Pixel pColumn : pRow)
+            {
+                int iAvg = (int) (pColumn.getRed() + pColumn.getGreen() + pColumn.getBlue()) / 3;
+
+                pColumn.setRed(iAvg);
+                pColumn.setGreen(iAvg);
+                pColumn.setBlue(iAvg);
+            }
+        }
+    }
+
+    /**
+     * Fix pixels for "water.jpg"
+     */
+    public void fixUnderwater()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        for (Pixel[] pRow : pixels)
+        {
+            for (Pixel pColumn : pRow)
+            {
+                int iBlue = pColumn.getBlue();
+                int iRed = pColumn.getRed();
+                int iGreen = pColumn.getGreen();
+
+                if (iBlue < 155 || iBlue > 180 || iRed < 10 || iRed > 25 || iGreen < 155 || iGreen > 165)
+                {
+                    pColumn.setRed(0);
+                    pColumn.setGreen(0);
+                    pColumn.setBlue(0);
+                }
+            }
+        }
+    }
+
+    /** Method that mirrors the picture around a
     * vertical mirror in the center of the picture
     * from left to right */
   public void mirrorVertical()
