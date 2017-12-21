@@ -299,14 +299,67 @@ public class Picture extends SimplePicture
       // loop from 13 to just before the mirror point
       for (int col = 13; col < mirrorPoint; col++)
       {
-        
         leftPixel = pixels[row][col];      
-        rightPixel = pixels[row]                       
-                         [mirrorPoint - col + mirrorPoint];
+        rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+        count++;
       }
     }
+
+    System.out.println(count);
   }
+
+    /**
+     * Mirrors arms of the snowman vertically
+     */
+    public void mirrorArms()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        Pixel topPixel = null;
+        Pixel bottomPixel = null;
+
+        for (int row = 160; row < 200; row++)
+        {
+            for (int col = 105; col < 170; col++)
+            {
+                topPixel = pixels[row][col];
+                bottomPixel = pixels[195 - row + 195][col];
+                bottomPixel.setColor(topPixel.getColor());
+            }
+        }
+
+        for (int row = 170; row < 200; row++)
+        {
+            for (int col = 239; col < 295; col++)
+            {
+                topPixel = pixels[row][col];
+                bottomPixel = pixels[200 - row + 200][col];
+                bottomPixel.setColor(topPixel.getColor());
+            }
+        }
+    }
+
+    /**
+     * Mirrors the seagual horizontally
+     */
+    public void mirrorGull()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+
+        Pixel rightPixel = null;
+        Pixel leftPixel = null;
+
+        for (int row = 235; row < 325; row++)
+        {
+            for (int col = 240; col < 350; col++)
+            {
+                rightPixel = pixels[row][col];
+                leftPixel = pixels[row][350 - col + 350/3];
+                leftPixel.setColor(rightPixel.getColor());
+            }
+        }
+    }
   
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
